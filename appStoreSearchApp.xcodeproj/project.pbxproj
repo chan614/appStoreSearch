@@ -20,6 +20,10 @@
 		D7F26C7E27E616D8008E2206 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = D7F26C7D27E616D8008E2206 /* RxRelay */; };
 		D7F26C8027E616D8008E2206 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D7F26C7F27E616D8008E2206 /* RxSwift */; };
 		D7F26C8327E616E8008E2206 /* RIBs in Frameworks */ = {isa = PBXBuildFile; productRef = D7F26C8227E616E8008E2206 /* RIBs */; };
+		D7F26C9C27E6176B008E2206 /* APIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F26C9927E6176B008E2206 /* APIType.swift */; };
+		D7F26C9D27E6176B008E2206 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F26C9A27E6176B008E2206 /* SessionManager.swift */; };
+		D7F26C9E27E6176B008E2206 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F26C9B27E6176B008E2206 /* SearchAPI.swift */; };
+		D7F26CA027E61774008E2206 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F26C9F27E61774008E2206 /* SearchService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		D7F26C6727E615CC008E2206 /* appStoreSearchAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = appStoreSearchAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F26C6B27E615CC008E2206 /* appStoreSearchAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appStoreSearchAppUITests.swift; sourceTree = "<group>"; };
 		D7F26C6D27E615CC008E2206 /* appStoreSearchAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appStoreSearchAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D7F26C9927E6176B008E2206 /* APIType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIType.swift; sourceTree = "<group>"; };
+		D7F26C9A27E6176B008E2206 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		D7F26C9B27E6176B008E2206 /* SearchAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
+		D7F26C9F27E61774008E2206 /* SearchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,8 @@
 			children = (
 				D7F26C4A27E615CB008E2206 /* AppDelegate.swift */,
 				D7F26C4C27E615CB008E2206 /* SceneDelegate.swift */,
+				D7F26C9827E6176B008E2206 /* Network */,
+				D7F26CA127E61785008E2206 /* Services */,
 				D7F26C4E27E615CB008E2206 /* ViewController.swift */,
 				D7F26C5027E615CB008E2206 /* Main.storyboard */,
 				D7F26C5327E615CC008E2206 /* Assets.xcassets */,
@@ -133,6 +143,24 @@
 				D7F26C6D27E615CC008E2206 /* appStoreSearchAppUITestsLaunchTests.swift */,
 			);
 			path = appStoreSearchAppUITests;
+			sourceTree = "<group>";
+		};
+		D7F26C9827E6176B008E2206 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D7F26C9A27E6176B008E2206 /* SessionManager.swift */,
+				D7F26C9927E6176B008E2206 /* APIType.swift */,
+				D7F26C9B27E6176B008E2206 /* SearchAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D7F26CA127E61785008E2206 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D7F26C9F27E61774008E2206 /* SearchService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,8 +304,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F26C9C27E6176B008E2206 /* APIType.swift in Sources */,
 				D7F26C4F27E615CB008E2206 /* ViewController.swift in Sources */,
+				D7F26C9E27E6176B008E2206 /* SearchAPI.swift in Sources */,
 				D7F26C4B27E615CB008E2206 /* AppDelegate.swift in Sources */,
+				D7F26CA027E61774008E2206 /* SearchService.swift in Sources */,
+				D7F26C9D27E6176B008E2206 /* SessionManager.swift in Sources */,
 				D7F26C4D27E615CB008E2206 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
