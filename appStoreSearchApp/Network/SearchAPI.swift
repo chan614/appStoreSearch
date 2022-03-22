@@ -35,7 +35,7 @@ extension SearchAPI {
             ]
         case .detail(let id):
             return [
-                "bundleid": id
+                "bundleId": id
             ]
         }
     }

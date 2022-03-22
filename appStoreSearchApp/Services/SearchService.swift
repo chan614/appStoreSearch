@@ -10,7 +10,7 @@ import RxSwift
 
 protocol SearchServiceable {
     func loadList(term: String) -> Single<AppListDTO>
-    func loadDetail(name: String) -> Single<Bool>
+    func loadDetail(bundleID: String) -> Single<Bool>
 }
 
 class SearchService: SearchServiceable {
@@ -19,7 +19,7 @@ class SearchService: SearchServiceable {
         return SessionManager.shared.request(apiType: apiType)
     }
     
-    func loadDetail(name: String) -> Single<Bool> {
+    func loadDetail(bundleID: String) -> Single<Bool> {
         .just(true)
     }
 }

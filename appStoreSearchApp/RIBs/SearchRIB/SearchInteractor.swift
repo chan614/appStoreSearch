@@ -10,7 +10,8 @@ import RxSwift
 import RxRelay
 
 protocol SearchRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func routeToDetail(bundleID: String)
+    func detachDetail()
 }
 
 protocol SearchPresentable: Presentable {

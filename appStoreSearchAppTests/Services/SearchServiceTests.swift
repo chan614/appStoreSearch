@@ -22,7 +22,18 @@ class SearchServiceTests: XCTestCase {
         service = nil
     }
     
-    func testSearch() throws {
+    func testLoadSearch() throws {
+        let dto = try service.loadList(term: "메일")
+            .asObservable()
+            .toBlocking(timeout: 10)
+            .first()
+        
+        print(dto)
+        
+        XCTAssertNotNil(dto)
+    }
+    
+    func testLoadDetail() throws {
         let dto = try service.loadList(term: "메일")
             .asObservable()
             .toBlocking(timeout: 10)

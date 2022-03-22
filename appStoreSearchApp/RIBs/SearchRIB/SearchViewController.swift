@@ -16,7 +16,7 @@ protocol SearchPresentableListener: AnyObject {
     func search(term: String)
 }
 
-final class SearchViewController: UIViewController, SearchPresentable, SearchViewControllable {
+final class SearchViewController: UIViewController, SearchPresentable {
 
     weak var listener: SearchPresentableListener?
     let disposeBag = DisposeBag()
@@ -58,5 +58,15 @@ final class SearchViewController: UIViewController, SearchPresentable, SearchVie
                 
                 cell.configure(data: element)
             }.disposed(by: disposeBag)
+    }
+}
+
+extension SearchViewController: SearchViewControllable {
+    func push(viewController: ViewControllable) {
+        navigationController?.pushViewController(viewController.uiviewController, animated: true)
+    }
+    
+    func pop() {
+        navigationController?.popViewController(animated: true)
     }
 }

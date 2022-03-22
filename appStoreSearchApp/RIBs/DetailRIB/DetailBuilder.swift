@@ -20,7 +20,7 @@ final class DetailComponent: Component<DetailDependency> {
 // MARK: - Builder
 
 protocol DetailBuildable: Buildable {
-    func build(withListener listener: DetailListener) -> DetailRouting
+    func build(withListener listener: DetailListener, bundleID: String) -> DetailRouting
 }
 
 final class DetailBuilder: Builder<DetailDependency>, DetailBuildable {
@@ -29,10 +29,13 @@ final class DetailBuilder: Builder<DetailDependency>, DetailBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: DetailListener) -> DetailRouting {
+    func build(withListener listener: DetailListener, bundleID: String) -> DetailRouting {
         let component = DetailComponent(dependency: dependency)
         let viewController = DetailViewController(nibName: "DetailViewController", bundle: nil)
-        let interactor = DetailInteractor(presenter: viewController, service: SearchService())
+        let interactor = DetailInteractor(
+            presenter: viewController,
+            service: SearchService(),
+            bundleID: bundleID)
         interactor.listener = listener
         return DetailRouter(interactor: interactor, viewController: viewController)
     }
