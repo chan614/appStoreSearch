@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AC3867A27E9567900D4ABDF /* AppListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3867927E9567900D4ABDF /* AppListDTO.swift */; };
+		0AC3867F27E958E500D4ABDF /* SearchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3867E27E958E500D4ABDF /* SearchServiceTests.swift */; };
+		0AC3868627E95C8000D4ABDF /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC3868527E95C8000D4ABDF /* RxBlocking */; };
+		0AC3868827E95C8000D4ABDF /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC3868727E95C8000D4ABDF /* RxTest */; };
+		0AC3869327E9A63900D4ABDF /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 0AC3869227E9A63900D4ABDF /* Cosmos */; };
 		D747A75827E72CD10033ED7A /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D747A75327E72CD10033ED7A /* SearchRouter.swift */; };
 		D747A75927E72CD10033ED7A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D747A75427E72CD10033ED7A /* SearchViewController.swift */; };
 		D747A75A27E72CD10033ED7A /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D747A75527E72CD10033ED7A /* SearchBuilder.swift */; };
@@ -69,6 +74,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AC3867927E9567900D4ABDF /* AppListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListDTO.swift; sourceTree = "<group>"; };
+		0AC3867E27E958E500D4ABDF /* SearchServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTests.swift; sourceTree = "<group>"; };
 		D747A75327E72CD10033ED7A /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		D747A75427E72CD10033ED7A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D747A75527E72CD10033ED7A /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
@@ -118,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC3869327E9A63900D4ABDF /* Cosmos in Frameworks */,
 				D7F26C8327E616E8008E2206 /* RIBs in Frameworks */,
 				D7F26C8027E616D8008E2206 /* RxSwift in Frameworks */,
 				D7F26C7E27E616D8008E2206 /* RxRelay in Frameworks */,
@@ -129,6 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AC3868827E95C8000D4ABDF /* RxTest in Frameworks */,
+				0AC3868627E95C8000D4ABDF /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +152,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AC3867B27E9588900D4ABDF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0AC3867E27E958E500D4ABDF /* SearchServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0AC3868027E959F600D4ABDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D747A75D27E72ED80033ED7A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +183,7 @@
 				D7F26C6027E615CC008E2206 /* appStoreSearchAppTests */,
 				D7F26C6A27E615CC008E2206 /* appStoreSearchAppUITests */,
 				D7F26C4827E615CB008E2206 /* Products */,
+				0AC3868027E959F600D4ABDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,6 +219,7 @@
 		D7F26C6027E615CC008E2206 /* appStoreSearchAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				0AC3867B27E9588900D4ABDF /* Services */,
 				D7F26C6127E615CC008E2206 /* appStoreSearchAppTests.swift */,
 			);
 			path = appStoreSearchAppTests;
@@ -213,6 +240,7 @@
 				D7F26C9A27E6176B008E2206 /* SessionManager.swift */,
 				D7F26C9927E6176B008E2206 /* APIType.swift */,
 				D7F26C9B27E6176B008E2206 /* SearchAPI.swift */,
+				0AC3867927E9567900D4ABDF /* AppListDTO.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -307,6 +335,7 @@
 				D7F26C7D27E616D8008E2206 /* RxRelay */,
 				D7F26C7F27E616D8008E2206 /* RxSwift */,
 				D7F26C8227E616E8008E2206 /* RIBs */,
+				0AC3869227E9A63900D4ABDF /* Cosmos */,
 			);
 			productName = appStoreSearchApp;
 			productReference = D7F26C4727E615CB008E2206 /* appStoreSearchApp.app */;
@@ -326,6 +355,10 @@
 				D7F26C5F27E615CC008E2206 /* PBXTargetDependency */,
 			);
 			name = appStoreSearchAppTests;
+			packageProductDependencies = (
+				0AC3868527E95C8000D4ABDF /* RxBlocking */,
+				0AC3868727E95C8000D4ABDF /* RxTest */,
+			);
 			productName = appStoreSearchAppTests;
 			productReference = D7F26C5D27E615CC008E2206 /* appStoreSearchAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -355,6 +388,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					version,
+				);
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
@@ -383,6 +419,7 @@
 			packageReferences = (
 				D7F26C7A27E616D8008E2206 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D7F26C8127E616E8008E2206 /* XCRemoteSwiftPackageReference "RIBs" */,
+				0AC3869127E9A63900D4ABDF /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = D7F26C4827E615CB008E2206 /* Products */;
 			projectDirPath = "";
@@ -455,6 +492,7 @@
 				D7F26CB427E61877008E2206 /* RootRouter.swift in Sources */,
 				D747A75827E72CD10033ED7A /* SearchRouter.swift in Sources */,
 				D7F26C9D27E6176B008E2206 /* SessionManager.swift in Sources */,
+				0AC3867A27E9567900D4ABDF /* AppListDTO.swift in Sources */,
 				D7F26CB227E61877008E2206 /* RootInteractor.swift in Sources */,
 				D7F26CB627E61877008E2206 /* RootComponent+.swift in Sources */,
 				D7F26C4D27E615CB008E2206 /* SceneDelegate.swift in Sources */,
@@ -467,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7F26C6227E615CC008E2206 /* appStoreSearchAppTests.swift in Sources */,
+				0AC3867F27E958E500D4ABDF /* SearchServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,6 +837,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0AC3869127E9A63900D4ABDF /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D7F26C7A27E616D8008E2206 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -817,6 +864,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0AC3868527E95C8000D4ABDF /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F26C7A27E616D8008E2206 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		0AC3868727E95C8000D4ABDF /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F26C7A27E616D8008E2206 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		0AC3869227E9A63900D4ABDF /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AC3869127E9A63900D4ABDF /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
 		D7F26C7B27E616D8008E2206 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D7F26C7A27E616D8008E2206 /* XCRemoteSwiftPackageReference "RxSwift" */;

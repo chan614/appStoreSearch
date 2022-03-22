@@ -25,10 +25,11 @@ final class DetailInteractor: PresentableInteractor<DetailPresentable>, DetailIn
 
     weak var router: DetailRouting?
     weak var listener: DetailListener?
-
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: DetailPresentable) {
+    
+    let service: SearchService
+    
+    init(presenter: DetailPresentable, service: SearchService) {
+        self.service = service
         super.init(presenter: presenter)
         presenter.listener = self
     }

@@ -18,4 +18,24 @@ protocol DetailPresentableListener: AnyObject {
 final class DetailViewController: UIViewController, DetailPresentable, DetailViewControllable {
 
     weak var listener: DetailPresentableListener?
+    
+    @IBOutlet weak var appImageView: UIImageView!
+    @IBOutlet weak var titleView: UILabel!
+    @IBOutlet weak var subTitleView: UILabel!
+    @IBOutlet weak var openButton: UIButton!
+    @IBOutlet weak var infoTableView: UITableView!
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var thumbnailTableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUp()
+    }
+    
+    func setUp() {
+        
+    }
 }

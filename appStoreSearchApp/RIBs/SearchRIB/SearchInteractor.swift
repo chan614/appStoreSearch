@@ -7,6 +7,7 @@
 
 import RIBs
 import RxSwift
+import RxRelay
 
 protocol SearchRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -21,14 +22,20 @@ protocol SearchListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchInteractable, SearchPresentableListener {
+final class SearchInteractor: PresentableInteractor<SearchPresentable> {
 
     weak var router: SearchRouting?
     weak var listener: SearchListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: SearchPresentable) {
+    let service: SearchService
+    
+    var searchList: Observable<[AppInfoDTO]> {
+        searchListRelay.asObservable()
+    }
+    var searchListRelay = ReplayRelay<[AppInfoDTO]>.create(bufferSize: 1)
+    
+    init(presenter: SearchPresentable, service: SearchService) {
+        self.service = service
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -41,5 +48,29 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable>, SearchIn
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func loadSearchList(term: String) {
+        service.loadList(term: term)
+            .subscribe(
+                with: self,
+                onSuccess: { owner, result in
+                    owner.searchListRelay.accept(result.results)
+                },
+                onFailure: { owner, error in
+                    print(error)
+                }
+            ).disposeOnDeactivate(interactor: self)
+    }
+}
+
+
+extension SearchInteractor: SearchInteractable {
+    
+}
+
+extension SearchInteractor: SearchPresentableListener {
+    func search(term: String) {
+        loadSearchList(term: term)
     }
 }

@@ -9,13 +9,14 @@ import Foundation
 import RxSwift
 
 protocol SearchServiceable {
-    func loadList(term: String) -> Single<Bool>
+    func loadList(term: String) -> Single<AppListDTO>
     func loadDetail(name: String) -> Single<Bool>
 }
 
 class SearchService: SearchServiceable {
-    func loadList(term: String) -> Single<Bool> {
-        .just(true)
+    func loadList(term: String) -> Single<AppListDTO> {
+        let apiType = SearchAPI.list(term: term)
+        return SessionManager.shared.request(apiType: apiType)
     }
     
     func loadDetail(name: String) -> Single<Bool> {

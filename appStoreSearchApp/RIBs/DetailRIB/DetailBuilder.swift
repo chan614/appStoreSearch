@@ -31,8 +31,8 @@ final class DetailBuilder: Builder<DetailDependency>, DetailBuildable {
 
     func build(withListener listener: DetailListener) -> DetailRouting {
         let component = DetailComponent(dependency: dependency)
-        let viewController = DetailViewController()
-        let interactor = DetailInteractor(presenter: viewController)
+        let viewController = DetailViewController(nibName: "DetailViewController", bundle: nil)
+        let interactor = DetailInteractor(presenter: viewController, service: SearchService())
         interactor.listener = listener
         return DetailRouter(interactor: interactor, viewController: viewController)
     }

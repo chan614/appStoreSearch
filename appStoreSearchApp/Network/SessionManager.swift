@@ -55,15 +55,17 @@ class SessionManager {
     }
     
     private func urlComponents(apiType: APIType) -> URLComponents? {
-        let url = apiType.baseURL
-            .appendingPathComponent(apiType.path)
-            .appendingPathComponent("?")
+        var url = apiType.baseURL.appendingPathComponent(apiType.path).absoluteString
         
         let queryItems = apiType.params.map {
             URLQueryItem(name: $0.key, value: String(describing: $0.value))
         }
         
-        var components = URLComponents(string: url.absoluteString)
+        if !queryItems.isEmpty {
+            url += "?"
+        }
+        
+        var components = URLComponents(string: url)
         components?.queryItems?.append(contentsOf: queryItems)
         
         return components

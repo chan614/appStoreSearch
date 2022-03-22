@@ -1,0 +1,36 @@
+//
+//  SearchServiceTests.swift
+//  appStoreSearchAppTests
+//
+//  Created by dev3-parkjichan on 2022/03/22.
+//
+
+import XCTest
+import RxBlocking
+@testable import appStoreSearchApp
+
+class SearchServiceTests: XCTestCase {
+    var service: SearchService!
+    
+    override func setUpWithError() throws {
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+        service = SearchService()
+    }
+
+    override func tearDownWithError() throws {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        service = nil
+    }
+    
+    func testSearch() throws {
+        let dto = try service.loadList(term: "메일")
+            .asObservable()
+            .toBlocking(timeout: 10)
+            .first()
+        
+        print(dto)
+        
+        XCTAssertNotNil(dto)
+    }
+
+}

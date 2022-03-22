@@ -32,7 +32,7 @@ final class SearchBuilder: Builder<SearchDependency>, SearchBuildable {
     func build(withListener listener: SearchListener) -> SearchRouting {
         let component = SearchComponent(dependency: dependency)
         let viewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
-        let interactor = SearchInteractor(presenter: viewController)
+        let interactor = SearchInteractor(presenter: viewController, service: SearchService())
         interactor.listener = listener
         return SearchRouter(interactor: interactor, viewController: viewController)
     }
