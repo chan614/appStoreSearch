@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="51" width="375" height="616"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <searchBar contentMode="redraw" searchBarStyle="prominent" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-Ab-Hkq">
+                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-Ab-Hkq">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
