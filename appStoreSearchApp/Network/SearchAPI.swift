@@ -9,7 +9,7 @@ import Foundation
 
 enum SearchAPI: APIType {
     case list(term: String)
-    case detail(id: Int)
+    case detail(bundleID: String)
 }
 
 extension SearchAPI {
@@ -31,11 +31,12 @@ extension SearchAPI {
         case .list(let term):
             return [
                 "term": term,
-                "media": "software"
+                "media": "software",
+                "entity": "software"
             ]
-        case .detail(let id):
+        case .detail(let bundleID):
             return [
-                "bundleId": id
+                "bundleId": bundleID
             ]
         }
     }

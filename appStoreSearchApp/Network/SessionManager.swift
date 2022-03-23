@@ -51,7 +51,6 @@ class SessionManager {
             
             return Disposables.create()
         }
-        .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .default))
     }
     
     private func urlComponents(apiType: APIType) -> URLComponents? {

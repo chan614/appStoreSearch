@@ -11,9 +11,10 @@ import RxCocoa
 import UIKit
 
 protocol SearchPresentableListener: AnyObject {
-    var searchList: Observable<[AppInfoDTO]> { get }
+    var searchListObservable: Observable<[AppInfoDTO]> { get }
     
     func search(term: String)
+    func showDetail(item: AppInfoDTO)
 }
 
 final class SearchViewController: UIViewController, SearchPresentable {
@@ -28,7 +29,7 @@ final class SearchViewController: UIViewController, SearchPresentable {
         super.viewDidLoad()
         
         let cellNib = UINib(nibName: "SearchListCell", bundle: nil)
-        searchTableView.register(cellNib, forCellReuseIdentifier: "SearchListCell")
+        searchTableView.register(cellNib, forCellReuseIdentifier: SearchListCell.reuseID)
         
         navigationController?.navigationBar.isHidden = true
         searchTableView.rowHeight = 320
@@ -41,23 +42,28 @@ final class SearchViewController: UIViewController, SearchPresentable {
         searchBar.rx.text
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(with: self, onNext: { owner, text in
-                // owner.listener?.search(term: text ?? String())
+                 owner.listener?.search(term: text ?? String())
+            })
+            .disposed(by: disposeBag)
+        
+        searchTableView.rx.modelSelected(AppInfoDTO.self)
+            .subscribe(with: self, onNext: { owner, item in
+                owner.listener?.showDetail(item: item)
             })
             .disposed(by: disposeBag)
     }
     
     func bind() {
-        listener?.searchList
-            .debug()
+        listener?.searchListObservable
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .default))
             .observe(on: MainScheduler.instance)
             .bind(to: searchTableView.rx.items(
-                cellIdentifier: "SearchListCell",
+                cellIdentifier: SearchListCell.reuseID,
                 cellType: SearchListCell.self)
-            ) { [weak self] index, element, cell in
-                
+            ) { index, element, cell in
                 cell.configure(data: element)
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

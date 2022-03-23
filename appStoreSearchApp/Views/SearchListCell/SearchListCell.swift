@@ -9,6 +9,7 @@ import UIKit
 import Cosmos
 
 class SearchListCell: UITableViewCell {
+    static let reuseID = "SearchListCell"
     
     @IBOutlet weak var appImageView: UIImageView!
     
@@ -27,13 +28,11 @@ class SearchListCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func configure(data: AppInfoDTO) {

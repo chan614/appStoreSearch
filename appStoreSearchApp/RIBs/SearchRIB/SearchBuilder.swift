@@ -34,6 +34,12 @@ final class SearchBuilder: Builder<SearchDependency>, SearchBuildable {
         let viewController = SearchViewController(nibName: "SearchViewController", bundle: nil)
         let interactor = SearchInteractor(presenter: viewController, service: SearchService())
         interactor.listener = listener
-        return SearchRouter(interactor: interactor, viewController: viewController)
+        
+        let detailBuilder = DetailBuilder(dependency: component)
+        
+        return SearchRouter(
+            interactor: interactor,
+            viewController: viewController,
+            detailBuilder: detailBuilder)
     }
 }

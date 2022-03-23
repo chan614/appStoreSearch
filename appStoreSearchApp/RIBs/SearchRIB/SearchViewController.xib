@@ -25,7 +25,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-Ab-Hkq">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                    <rect key="frame" x="8" y="0.0" width="359" height="51"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
             </subviews>
@@ -34,11 +34,11 @@
             <constraints>
                 <constraint firstItem="lia-cd-DBZ" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="6l9-v8-tcw"/>
                 <constraint firstItem="lia-cd-DBZ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="RKT-Vi-zd1"/>
-                <constraint firstItem="Saw-Ab-Hkq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="eWC-qY-651"/>
+                <constraint firstItem="Saw-Ab-Hkq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-8" id="eWC-qY-651"/>
                 <constraint firstItem="lia-cd-DBZ" firstAttribute="top" secondItem="Saw-Ab-Hkq" secondAttribute="bottom" id="pMc-zj-xnx"/>
                 <constraint firstItem="Saw-Ab-Hkq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="rxV-XQ-aSE"/>
                 <constraint firstItem="lia-cd-DBZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tYx-XQ-gAk"/>
-                <constraint firstItem="Saw-Ab-Hkq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="tai-EC-39K"/>
+                <constraint firstItem="Saw-Ab-Hkq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="tai-EC-39K"/>
             </constraints>
             <point key="canvasLocation" x="136.80000000000001" y="141.67916041979012"/>
         </view>
