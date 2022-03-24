@@ -8,7 +8,7 @@
 import Foundation
 
 enum SearchAPI: APIType {
-    case list(term: String)
+    case list(term: String, offset: Int)
     case detail(bundleID: String)
 }
 
@@ -28,11 +28,12 @@ extension SearchAPI {
     
     var params: [String: Any] {
         switch self {
-        case .list(let term):
+        case let .list(term, offset):
             return [
                 "term": term,
                 "media": "software",
-                "entity": "software"
+                "entity": "software",
+                "offset": offset
             ]
         case .detail(let bundleID):
             return [
