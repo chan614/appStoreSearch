@@ -225,6 +225,7 @@
 		D747A77E27EB46D90033ED7A /* DataObjects */ = {
 			isa = PBXGroup;
 			children = (
+				0AC3867927E9567900D4ABDF /* AppListDTO.swift */,
 				D747A77F27EB46F70033ED7A /* AppInfoType.swift */,
 			);
 			path = DataObjects;
@@ -245,6 +246,15 @@
 				D747A78927EC9DB80033ED7A /* UIImageViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D747A78D27ECA6150033ED7A /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D7F26C9927E6176B008E2206 /* APIType.swift */,
+				D7F26C9B27E6176B008E2206 /* SearchAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		D7F26C3E27E615CB008E2206 = {
@@ -311,10 +321,8 @@
 		D7F26C9827E6176B008E2206 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				D747A78D27ECA6150033ED7A /* API */,
 				D7F26C9A27E6176B008E2206 /* SessionManager.swift */,
-				D7F26C9927E6176B008E2206 /* APIType.swift */,
-				D7F26C9B27E6176B008E2206 /* SearchAPI.swift */,
-				0AC3867927E9567900D4ABDF /* AppListDTO.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
