@@ -31,8 +31,8 @@ final class SearchRouter: ViewableRouter<SearchInteractable, SearchViewControlla
         interactor.router = self
     }
     
-    func routeToDetail(bundleID: String) {
-        let routing = detailBuilder.build(withListener: interactor, bundleID: bundleID)
+    func routeToDetail(appInfoDTO: AppInfoDTO) {
+        let routing = detailBuilder.build(withListener: interactor, appInfoDTO: appInfoDTO)
         self.detailRouting = routing
         attachChild(routing)
         viewController.push(viewController: routing.viewControllable)

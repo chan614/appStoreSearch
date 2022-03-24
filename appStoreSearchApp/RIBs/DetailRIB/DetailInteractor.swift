@@ -10,17 +10,25 @@ import RIBs
 import RxSwift
 import RxRelay
 
+struct DetailData {
+    let title: String
+    let subTitle: String
+    let appImageURL: URL?
+    let version: String
+    let date: String
+    let releaseNote: String
+}
+
 protocol DetailRouting: ViewableRouting {
     
 }
 
 protocol DetailPresentable: Presentable {
     var listener: DetailPresentableListener? { get set }
-    
 }
 
 protocol DetailListener: AnyObject {
-    
+    func detachDetail()
 }
 
 final class DetailInteractor: PresentableInteractor<DetailPresentable> {
@@ -28,23 +36,34 @@ final class DetailInteractor: PresentableInteractor<DetailPresentable> {
     weak var router: DetailRouting?
     weak var listener: DetailListener?
     
-    let service: SearchService
-    let bundleID: String
+    let appInfoDTO: AppInfoDTO
     
-    let infoListRelay = PublishRelay<[AppInfoType]>()
-    let screenShotsRelay = PublishRelay<[URL]>()
+    let infoListRelay = ReplayRelay<[AppInfoType]>.create(bufferSize: 1)
+    let screenShotsRelay = ReplayRelay<[URL]>.create(bufferSize: 1)
+    let detailDataRelay = ReplayRelay<DetailData>.create(bufferSize: 1)
     
-    init(presenter: DetailPresentable, service: SearchService, bundleID: String) {
-        self.service = service
-        self.bundleID = bundleID
+    // MARK: - PresentableListener property
+    
+    var detailDataObservable: Observable<DetailData> {
+        detailDataRelay.asObservable()
+    }
+    var infoListObservable: Observable<[AppInfoType]> {
+        infoListRelay.asObservable()
+    }
+    var screenShotsObservable: Observable<[URL]> {
+        screenShotsRelay.asObservable()
+    }
+    
+    init(presenter: DetailPresentable, appInfoDTO: AppInfoDTO) {
+        
+        self.appInfoDTO = appInfoDTO
         super.init(presenter: presenter)
         presenter.listener = self
     }
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        loadDetail()
-        
+        setDetail()
     }
 
     override func willResignActive() {
@@ -52,33 +71,42 @@ final class DetailInteractor: PresentableInteractor<DetailPresentable> {
         
     }
     
-    func loadDetail() {
-        service.loadDetail(bundleID: bundleID)
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .default))
-            .subscribe(
-                with: self,
-                onSuccess: { owner, result in
-                    guard let infoDTO = result.results.first else {
-                        return
-                    }
-                    let appInfoList = owner.buildAppInfoTypes(dto: infoDTO)
-                    
-                    owner.infoListRelay.accept(appInfoList)
-                },
-                onFailure: { owenr, error in
-                    
-                }
-            ).disposeOnDeactivate(interactor: self)
+    func setDetail() {
+        let detail = buildDetail(dto: appInfoDTO)
+        let appInfoList = buildAppInfoTypes(dto: appInfoDTO)
+        let screenShots = buildScreenShots(dto: appInfoDTO)
+        
+        detailDataRelay.accept(detail)
+        infoListRelay.accept(appInfoList)
+        screenShotsRelay.accept(screenShots)
     }
     
     func buildAppInfoTypes(dto: AppInfoDTO) -> [AppInfoType] {
-        let rating = AppInfoType.rating(count: dto.userRatingCount, rating: dto.averageUserRating)
-        let advisory = AppInfoType.advisory(rating: dto.contentAdvisoryRating.rawValue)
+        let rating = AppInfoType.rating(count: dto.userRatingCount, rating: round(dto.averageUserRating * 100) / 100)
+        let advisory = AppInfoType.advisory(rating: dto.contentAdvisoryRating)
         let ranking = AppInfoType.ranking(rank: 1, category: dto.primaryGenreName)
         let developer = AppInfoType.developer(name: dto.sellerName)
         let language = AppInfoType.language(code: dto.languageCodesISO2A.first ?? "", desc: "")
         
         return [rating, advisory, ranking, developer, language]
+    }
+    
+    func buildDetail(dto: AppInfoDTO) -> DetailData {
+        let appImageURL = URL(string: dto.artworkUrl512)
+        
+        return DetailData(
+            title: dto.trackName,
+            subTitle: dto.sellerName,
+            appImageURL: appImageURL,
+            version: dto.version,
+            date: dto.currentVersionReleaseDate,
+            releaseNote: dto.releaseNotes)
+    }
+    
+    func buildScreenShots(dto: AppInfoDTO) -> [URL] {
+        return dto.screenshotUrls.compactMap {
+            URL(string: $0)
+        }
     }
 }
 
@@ -87,11 +115,7 @@ extension DetailInteractor: DetailInteractable {
 }
 
 extension DetailInteractor: DetailPresentableListener {
-    var infoListObservable: Observable<[AppInfoType]> {
-        infoListRelay.asObservable()
-    }
-    
-    var screenShotsObservable: Observable<[URL]> {
-        screenShotsRelay.asObservable()
+    func shutdown() {
+        listener?.detachDetail()
     }
 }

@@ -12,4 +12,3 @@ protocol APIType {
     var path: String { get }
     var params: [String: Any] { get }
 }
-

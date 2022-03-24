@@ -22,14 +22,10 @@ class MainViewController: UITabBarController, MainPresentable, MainViewControlla
         
         let tabBarItem = UITabBarItem()
         tabBarItem.title = "Search"
-//        tabBarItem.image = UIImage(systemName: "")
-//        tabBarItem.selectedImage =  UIImage(systemName: "")
-//        viewController.uiviewController.tabBarItxem = tabBarItem
+        tabBarItem.image = UIImage(systemName: "magnifyingglass")
         
         let targetController = UINavigationController(rootViewController: viewController.uiviewController)
         targetController.tabBarItem = tabBarItem
-        
-        
         
         if viewControllers == nil {
             viewControllers = [targetController]

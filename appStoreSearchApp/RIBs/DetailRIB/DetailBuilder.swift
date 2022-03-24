@@ -8,19 +8,17 @@
 import RIBs
 
 protocol DetailDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    
 }
 
 final class DetailComponent: Component<DetailDependency> {
 
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
 // MARK: - Builder
 
 protocol DetailBuildable: Buildable {
-    func build(withListener listener: DetailListener, bundleID: String) -> DetailRouting
+    func build(withListener listener: DetailListener, appInfoDTO: AppInfoDTO) -> DetailRouting
 }
 
 final class DetailBuilder: Builder<DetailDependency>, DetailBuildable {
@@ -29,13 +27,10 @@ final class DetailBuilder: Builder<DetailDependency>, DetailBuildable {
         super.init(dependency: dependency)
     }
 
-    func build(withListener listener: DetailListener, bundleID: String) -> DetailRouting {
-        let component = DetailComponent(dependency: dependency)
+    func build(withListener listener: DetailListener, appInfoDTO: AppInfoDTO) -> DetailRouting {
+        let _ = DetailComponent(dependency: dependency)
         let viewController = DetailViewController(nibName: "DetailViewController", bundle: nil)
-        let interactor = DetailInteractor(
-            presenter: viewController,
-            service: SearchService(),
-            bundleID: bundleID)
+        let interactor = DetailInteractor(presenter: viewController, appInfoDTO: appInfoDTO)
         interactor.listener = listener
         return DetailRouter(interactor: interactor, viewController: viewController)
     }

@@ -40,7 +40,7 @@ class SearchListCell: UITableViewCell {
         appImageView.setImage(url: url)
         titleLabel.text = data.trackName
         subTitleLabel.text = data.primaryGenreName
-        ratingCountLabel.text = data.userRatingCount.description
+        ratingCountLabel.text = TextUtil.unitFormatted(data.userRatingCount)
         starRatingView.rating = data.averageUserRating
         
         if data.screenshotUrls.count >= 3 {

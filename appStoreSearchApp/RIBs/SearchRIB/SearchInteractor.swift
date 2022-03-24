@@ -10,7 +10,7 @@ import RxSwift
 import RxRelay
 
 protocol SearchRouting: ViewableRouting {
-    func routeToDetail(bundleID: String)
+    func routeToDetail(appInfoDTO: AppInfoDTO)
     func detachDetail()
 }
 
@@ -30,7 +30,13 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable> {
 
     let service: SearchService
     
-    var searchListRelay = ReplaySubject<[AppInfoDTO]>.create(bufferSize: 1)
+    var searchListRelay = ReplayRelay<[AppInfoDTO]>.create(bufferSize: 1)
+    
+    // MARK: - PresentableListener property
+    
+    var searchListObservable: Observable<[AppInfoDTO]> {
+        searchListRelay.asObservable()
+    }
     
     init(presenter: SearchPresentable, service: SearchService) {
         self.service = service
@@ -40,7 +46,6 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable> {
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        loadSearchList(term: "카카오")
     }
 
     override func willResignActive() {
@@ -48,12 +53,17 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable> {
     }
     
     func loadSearchList(term: String) {
+        guard !term.isEmpty else {
+            searchListRelay.accept([])
+            return
+        }
+        
         service.loadList(term: term)
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .default))
             .subscribe(
                 with: self,
                 onSuccess: { owner, result in
-                    owner.searchListRelay.onNext(result.results)
+                    owner.searchListRelay.accept(result.results)
                 },
                 onFailure: { owner, error in
                     print(error)
@@ -64,16 +74,14 @@ final class SearchInteractor: PresentableInteractor<SearchPresentable> {
 
 
 extension SearchInteractor: SearchInteractable {
-    
+    func detachDetail() {
+        router?.detachDetail()
+    }
 }
 
 extension SearchInteractor: SearchPresentableListener {
-    var searchListObservable: Observable<[AppInfoDTO]> {
-        searchListRelay.asObservable()
-    }
-    
     func showDetail(item: AppInfoDTO) {
-        router?.routeToDetail(bundleID: item.bundleID)
+        router?.routeToDetail(appInfoDTO: item)
     }
     
     func search(term: String) {

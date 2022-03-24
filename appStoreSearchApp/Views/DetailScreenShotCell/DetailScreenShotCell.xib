@@ -16,8 +16,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="140" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bhy-hK-Zxa">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bhy-hK-Zxa">
                         <rect key="frame" x="0.0" y="0.0" width="140" height="300"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
             </view>
@@ -28,6 +33,11 @@
                 <constraint firstAttribute="bottom" secondItem="Bhy-hK-Zxa" secondAttribute="bottom" id="bd8-st-Mg3"/>
                 <constraint firstItem="Bhy-hK-Zxa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sF3-nG-b7R"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="imageView" destination="Bhy-hK-Zxa" id="WFq-Pf-HEd"/>
             </connections>

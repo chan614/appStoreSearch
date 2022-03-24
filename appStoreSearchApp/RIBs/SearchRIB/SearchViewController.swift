@@ -31,8 +31,8 @@ final class SearchViewController: UIViewController, SearchPresentable {
         let cellNib = UINib(nibName: "SearchListCell", bundle: nil)
         searchTableView.register(cellNib, forCellReuseIdentifier: SearchListCell.reuseID)
         
-        navigationController?.navigationBar.isHidden = true
-        searchTableView.rowHeight = 320
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "검색"
         
         subscribeUI()
         bind()
@@ -69,6 +69,7 @@ final class SearchViewController: UIViewController, SearchPresentable {
 
 extension SearchViewController: SearchViewControllable {
     func push(viewController: ViewControllable) {
+        viewController.uiviewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(viewController.uiviewController, animated: true)
     }
     
