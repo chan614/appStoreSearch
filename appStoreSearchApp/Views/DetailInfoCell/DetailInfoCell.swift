@@ -57,16 +57,17 @@ class DetailInfoCell: UICollectionViewCell {
     
     func labels(item: AppInfoType) -> (String, String, String) {
         switch item {
-        case .rating(let count, let rating):
+        case let .rating(count, rating):
             return ("\(TextUtil.unitFormatted(count))개의 평가", rating.description, "")
-        case .advisory(let rating):
+        case let .advisory(rating):
             return ("연령", rating, "세")
-        case .ranking(let rank, let category):
+        case let .ranking(rank, category):
             return ("차트", "#\(rank)", category)
-        case .developer(let name):
+        case let .developer(name):
             return ("개발자", "", name)
-        case .language(let code, let desc):
-            return ("언어", code, desc)
+        case let .language(code, count):
+            let bottomLabel = count < 1 ? String() : "+ \(count)개의 언어"
+            return ("언어", code, bottomLabel)
         }
     }
 }

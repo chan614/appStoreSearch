@@ -86,7 +86,10 @@ final class DetailInteractor: PresentableInteractor<DetailPresentable> {
         let advisory = AppInfoType.advisory(rating: dto.contentAdvisoryRating)
         let ranking = AppInfoType.ranking(rank: 1, category: dto.primaryGenreName)
         let developer = AppInfoType.developer(name: dto.sellerName)
-        let language = AppInfoType.language(code: dto.languageCodesISO2A.first ?? "", desc: "")
+        let primaryLang = dto.languageCodesISO2A.filter {
+            $0.uppercased() == Locale.current.languageCode?.uppercased()
+        }.first ?? dto.languageCodesISO2A.first ?? String()
+        let language = AppInfoType.language(code: primaryLang, count: dto.languageCodesISO2A.count - 1)
         
         return [rating, advisory, ranking, developer, language]
     }

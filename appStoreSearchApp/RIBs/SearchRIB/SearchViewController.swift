@@ -40,7 +40,7 @@ final class SearchViewController: UIViewController, SearchPresentable {
     
     func subscribeUI() {
         searchBar.rx.text
-            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .debounce(.milliseconds(400), scheduler: MainScheduler.instance)
             .subscribe(with: self, onNext: { owner, text in
                  owner.listener?.search(term: text ?? String())
             })
@@ -49,6 +49,18 @@ final class SearchViewController: UIViewController, SearchPresentable {
         searchTableView.rx.modelSelected(AppInfoDTO.self)
             .subscribe(with: self, onNext: { owner, item in
                 owner.listener?.showDetail(item: item)
+            })
+            .disposed(by: disposeBag)
+        
+        searchTableView.rx.prefetchRows
+            .asObservable()
+            .observe(on: MainScheduler.instance)
+            .subscribe(with: self, onNext: { owner, indexPaths in
+                indexPaths.forEach { indexPath in
+                    if owner.searchTableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
+                        owner.searchTableView.reloadRows(at: [indexPath], with: .fade)
+                    }
+                }
             })
             .disposed(by: disposeBag)
     }

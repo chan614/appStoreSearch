@@ -12,5 +12,5 @@ enum AppInfoType {
     case advisory(rating: String)
     case ranking(rank: Int, category: String)
     case developer(name: String)
-    case language(code: String, desc: String)
+    case language(code: String, count: Int)
 }

@@ -12,11 +12,8 @@ class SearchListCell: UITableViewCell {
     static let reuseID = "SearchListCell"
     
     @IBOutlet weak var appImageView: UIImageView!
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var subTitleLabel: UILabel!
-    
     @IBOutlet weak var ratingCountLabel: UILabel!
     
     @IBOutlet weak var firstThumbnailView: UIImageView!
@@ -54,18 +51,3 @@ class SearchListCell: UITableViewCell {
         }
     }
 }
-
-extension UIImageView {
-    func setImage(url: URL) {
-        DispatchQueue.global().async {
-            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-                guard let data = data else { return }
-                
-                DispatchQueue.main.async {
-                    self?.image = UIImage(data: data)
-                }
-            }.resume()
-        }
-    }
-}
-

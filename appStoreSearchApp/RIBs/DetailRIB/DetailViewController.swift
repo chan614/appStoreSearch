@@ -27,8 +27,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var openButton: UIButton!
-    @IBOutlet weak var infoCollectionView: UICollectionView!
-    
+    @IBOutlet weak var infoCollectionView: UICollectionView!    
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var releaseNoteLabel: UILabel!
