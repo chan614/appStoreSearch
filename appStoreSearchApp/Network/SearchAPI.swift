@@ -33,6 +33,7 @@ extension SearchAPI {
                 "term": term,
                 "media": "software",
                 "entity": "software",
+                "country": "KR",
                 "offset": offset
             ]
         case .detail(let bundleID):
